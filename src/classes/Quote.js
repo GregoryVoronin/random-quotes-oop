@@ -5,6 +5,9 @@ class Quote {
         this.author = author;
         this.isFavorite = false;
     }
+    formatAuthor() {
+        return `© ${this.author}`;
+    }
 }
 
 export default Quote;
