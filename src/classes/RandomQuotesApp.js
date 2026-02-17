@@ -19,18 +19,21 @@ class RandomQuotesApp {
         this.quoteAuthorElement.textContent = this.currentQuote.formatAuthor();
     }
 
+    setCurrentQuote(quote) {
+        if (quote instanceof Quote) {
+            this.currentQuote = quote;
+            this.displayCurrentQuote();
+        }
+    }
     getRandomQuote() {
-        const randomQuote = RandomQuote.getRandomQuote();
-        this.currentQuote = randomQuote;
-        this.displayCurrentQuote();
+        this.setCurrentQuote(RandomQuote.getRandomQuote());
     }
 
     getRandomQuoteAPI() {
+        this.randomQuoteBtnAPI.textContent = "Завантаження...";
         RandomQuote.getRandomQuoteAPI().then((quote) => {
-            if (quote instanceof Quote) {
-                this.currentQuote = quote;
-                this.displayCurrentQuote();
-            }
+            this.randomQuoteBtnAPI.textContent = "Генерувати via API";
+            this.setCurrentQuote(quote);
         });
     }
 

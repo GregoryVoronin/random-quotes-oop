@@ -19,7 +19,9 @@ body {
     border-radius: 10px;
     margin: 0 5px;
 }
-
+.disabled {
+    cursor: no-drop;
+}
 .btn-primary {
     background-color: #007bff;
 }
