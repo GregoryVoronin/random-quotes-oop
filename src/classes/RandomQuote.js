@@ -15,10 +15,25 @@ class RandomQuote {
         const options = {
             headers: { "Content-Type": "application/json; charset=utf-8" },
         };
-        return fetch(url, options)
-            .then((res) => res.json()) // json() теж Promise, тому викликаєм ще один .then далі
-            .then(({ id, quote: text, author }) => new Quote(id, text, author))
-            .catch((err) => console.log(err));
+
+        // return fetch(url, options)
+        //     .then((res) => res.json()) // json() теж Promise, тому викликаєм ще один .then далі
+        //     .then(({ id, quote: text, author }) => new Quote(id, text, author))
+        //     .catch((err) => console.log(err));
+
+        const getQuote = async (url, options) => {
+            const res = await fetch(url, options);
+            const json = await res.json();
+            const data = await json;
+            const { id, quote: text, author } = data;
+
+            return new Quote(id, text, author);
+        };
+        try {
+            return getQuote(url, options);
+        } catch (err) {
+            throw new Error("Error:", err);
+        }
     }
 }
 

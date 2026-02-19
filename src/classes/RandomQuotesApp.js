@@ -29,12 +29,19 @@ class RandomQuotesApp {
         this.setCurrentQuote(RandomQuote.getRandomQuote());
     }
 
-    getRandomQuoteAPI() {
+    // getRandomQuoteAPI() {
+    //     this.randomQuoteBtnAPI.textContent = "Завантаження...";
+    //     RandomQuote.getRandomQuoteAPI().then((quote) => {
+    //         this.randomQuoteBtnAPI.textContent = "Генерувати via API";
+    //         this.setCurrentQuote(quote);
+    //     });
+    // }
+
+    async getRandomQuoteAPI() {
         this.randomQuoteBtnAPI.textContent = "Завантаження...";
-        RandomQuote.getRandomQuoteAPI().then((quote) => {
-            this.randomQuoteBtnAPI.textContent = "Генерувати via API";
-            this.setCurrentQuote(quote);
-        });
+        const quoteAPI = await RandomQuote.getRandomQuoteAPI();
+        this.randomQuoteBtnAPI.textContent = "Генерувати via API";
+        this.setCurrentQuote(quoteAPI);
     }
 
     init() {
