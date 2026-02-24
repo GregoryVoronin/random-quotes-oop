@@ -22,9 +22,11 @@
                 <p class="quote-author" id="quote-author"></p>
                 <p id="quote-author" class="quote-author"></p>
                 <!-- prettier-ignore -->
-                <button id="random-quote-btn" class="btn btn-primary">Генерувати</button>
+                <button id="random-quote-btn" class="btn btn-primary">Генерувати <i class="fa-solid fa-shuffle"></i></button>
                 <!-- prettier-ignore -->
-                <button id="random-quote-api-btn" class="btn btn-secondary">Генерувати via API</button>
+                <button id="random-quote-public-api-btn" class="btn btn-secondary">Генерувати via public API <i class="fa-solid fa-earth-africa"></i></button>
+                <!-- prettier-ignore -->
+                <button id="random-quote-own-api-btn" class="btn btn-third">Генерувати via own API <i class="fa-solid fa-server"></i></button>
                 <!-- <i id="quote-favorite-btn" class="far fa-star star-icon"></i> -->
             </div>
         </div>
@@ -32,6 +34,10 @@
         <div class="favorites-container" id="favorites-container">
             <!-- Favorite quotes will be dynamically added here -->
         </div>
+        <script
+            src="https://kit.fontawesome.com/6ccfb2495b.js"
+            crossorigin="anonymous"
+        ></script>
         <script type="module" src="index.js"></script>
     </body>
 </html>

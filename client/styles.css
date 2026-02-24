@@ -17,7 +17,8 @@ body {
     border: none;
     cursor: pointer;
     border-radius: 10px;
-    margin: 0 5px;
+    margin: 5px;
+    transition: all 0.2s ease-in-out;
 }
 .disabled {
     cursor: no-drop;
@@ -34,6 +35,13 @@ body {
 }
 .btn-secondary:hover {
     background-color: #055b00;
+}
+
+.btn-third {
+    background-color: #007ea5;
+}
+.btn-third:hover {
+    background-color: #005a75;
 }
 
 .btn-danger {

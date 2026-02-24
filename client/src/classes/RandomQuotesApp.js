@@ -4,8 +4,11 @@ import Quote from "./Quote.js";
 class RandomQuotesApp {
     constructor() {
         this.randomQuoteBtn = document.getElementById("random-quote-btn");
-        this.randomQuoteBtnAPI = document.getElementById(
-            "random-quote-api-btn",
+        this.randomQuoteBtnPublicAPI = document.getElementById(
+            "random-quote-public-api-btn",
+        );
+        this.randomQuoteBtnOwnAPI = document.getElementById(
+            "random-quote-own-api-btn",
         );
         this.quoteTextElement = document.getElementById("quote-text");
         this.quoteAuthorElement = document.getElementById("quote-author");
@@ -37,10 +40,17 @@ class RandomQuotesApp {
     //     });
     // }
 
-    async getRandomQuoteAPIHandler() {
-        this.randomQuoteBtnAPI.textContent = "Завантаження...";
-        const quoteAPI = await RandomQuote.getRandomQuoteAPI();
-        this.randomQuoteBtnAPI.textContent = "Генерувати via API";
+    async handleRandomQuoteAPI(el, isOwnAPI = false) {
+        const btn = el.currentTarget;
+        const defaultText = btn.innerHTML;
+        btn.textContent = "Завантаження...";
+        let quoteAPI = null;
+        if (isOwnAPI) {
+            quoteAPI = await RandomQuote.getRandomQuoteOwnAPI();
+        } else {
+            quoteAPI = await RandomQuote.getRandomQuoteAPI();
+        }
+        btn.innerHTML = defaultText;
         this.setCurrentQuote(quoteAPI);
     }
 
@@ -48,8 +58,11 @@ class RandomQuotesApp {
         this.randomQuoteBtn.addEventListener("click", () => {
             this.getRandomQuoteHandler();
         });
-        this.randomQuoteBtnAPI.addEventListener("click", () => {
-            this.getRandomQuoteAPIHandler();
+        this.randomQuoteBtnPublicAPI.addEventListener("click", (el) => {
+            this.handleRandomQuoteAPI(el);
+        });
+        this.randomQuoteBtnOwnAPI.addEventListener("click", (el) => {
+            this.handleRandomQuoteAPI(el, true);
         });
     }
 }

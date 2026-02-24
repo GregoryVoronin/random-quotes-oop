@@ -46,6 +46,21 @@ class RandomQuote {
             console.error(err);
         }
     }
+
+    static async getRandomQuoteOwnAPI() {
+        const url = "http://localhost:3000/quotes/random-quote";
+        const options = {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+        };
+        try {
+            const res = await fetch(url);
+            const json = await res.json();
+            const { id, text, author } = json;
+            return new Quote(id, text, author);
+        } catch (err) {
+            console.error(err);
+        }
+    }
 }
 
 export default RandomQuote;

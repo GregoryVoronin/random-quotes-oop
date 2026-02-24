@@ -1,5 +1,6 @@
 const quotes = require("./data/quotes.js");
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const PORT = 3000;
 
@@ -7,6 +8,13 @@ function getRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     return quotes[randomIndex];
 }
+
+app.use(
+    cors({
+        origin: "*",
+        methods: ["GET"],
+    }),
+);
 
 app.get("/quotes", (req, res) => {
     res.json(quotes);
