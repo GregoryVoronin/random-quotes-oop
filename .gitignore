@@ -2,4 +2,5 @@
 *.zip
 .DS_Store
 /.vscode/
+/server/node_modules/
 Thumbs.db
