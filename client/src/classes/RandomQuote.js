@@ -1,3 +1,4 @@
+import config from "../../config.js";
 import quotes from "../data/quotes.js";
 import MathUtils from "../utils/MathUtils.js";
 import Quote from "./Quote.js";
@@ -11,10 +12,19 @@ class RandomQuote {
 
     static async getRandomQuoteAPI() {
         // https://quoteslate.vercel.app/api/quotes/random?count=10 щоб отримати масив 10ти цитат
-        const url = "https://quoteslate.vercel.app/api/quotes/random";
+        const url = `${config.PUBLIC_API_URL}/api/quotes/random`;
         const options = {
             headers: { "Content-Type": "application/json; charset=utf-8" },
         };
+
+        try {
+            const res = await fetch(url, options);
+            const json = await res.json();
+            const { id, quote: text, author } = json;
+            return new Quote(id, text, author);
+        } catch (err) {
+            console.error(err);
+        }
 
         // NOTE: Example #1
         // const myPromise = new Promise((resolve, reject) => {
@@ -36,24 +46,15 @@ class RandomQuote {
         //     .then((res) => res.json()) // json() теж Promise, тому викликаєм ще один .then далі
         //     .then(({ id, quote: text, author }) => new Quote(id, text, author))
         //     .catch((err) => console.log(err));
-
-        try {
-            const res = await fetch(url, options);
-            const json = await res.json();
-            const { id, quote: text, author } = json;
-            return new Quote(id, text, author);
-        } catch (err) {
-            console.error(err);
-        }
     }
 
     static async getRandomQuoteOwnAPI() {
-        const url = "http://localhost:3000/quotes/random-quote";
+        const url = `${config.API_URL}/quotes/random-quote`;
         const options = {
             headers: { "Content-Type": "application/json; charset=utf-8" },
         };
         try {
-            const res = await fetch(url);
+            const res = await fetch(url, options);
             const json = await res.json();
             const { id, text, author } = json;
             return new Quote(id, text, author);

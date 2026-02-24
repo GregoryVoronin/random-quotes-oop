@@ -32,14 +32,6 @@ class RandomQuotesApp {
         this.setCurrentQuote(RandomQuote.getRandomQuote());
     }
 
-    // getRandomQuoteAPIHandler() {
-    //     this.randomQuoteBtnAPI.textContent = "Завантаження...";
-    //     RandomQuote.getRandomQuoteAPI().then((quote) => {
-    //         this.randomQuoteBtnAPI.textContent = "Генерувати via API";
-    //         this.setCurrentQuote(quote);
-    //     });
-    // }
-
     async handleRandomQuoteAPI(el, isOwnAPI = false) {
         const btn = el.currentTarget;
         const defaultText = btn.innerHTML;
@@ -53,6 +45,15 @@ class RandomQuotesApp {
         btn.innerHTML = defaultText;
         this.setCurrentQuote(quoteAPI);
     }
+
+    // NOTE: Example OLD
+    // getRandomQuoteAPIHandler() {
+    //     this.randomQuoteBtnAPI.textContent = "Завантаження...";
+    //     RandomQuote.getRandomQuoteAPI().then((quote) => {
+    //         this.randomQuoteBtnAPI.textContent = "Генерувати via API";
+    //         this.setCurrentQuote(quote);
+    //     });
+    // }
 
     init() {
         this.randomQuoteBtn.addEventListener("click", () => {
